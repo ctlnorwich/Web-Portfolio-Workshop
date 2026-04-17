@@ -74,3 +74,42 @@ h1 {
 img {
   width: 100%;
 }
+
+#projects {
+  background: var(--colour-primary);
+  color: var(--colour-light);
+  
+  article {
+    display: flex;
+    flex-direction: column;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  figure, div {
+    flex: 1;
+  }
+
+}
+
+.link-button {
+  background: var(--colour-light);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  color: var(--colour-primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link-button:hover {
+  background: var(--colour-dark);
+  color: var(--colour-light);
+}
+
+@media screen and (min-width: 720px) {
+  #projects {
+    article {
+      flex-direction: row;
+    }
+  }
+}
