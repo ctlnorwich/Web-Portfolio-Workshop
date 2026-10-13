@@ -5,10 +5,13 @@
 
 /* Change the box model from the annoying default to the preferred usage*/
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-*, *::before, *::after {
-  box-sizing: inherit;
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 /* Get rid of the default margin on the body */
@@ -18,8 +21,8 @@ body {
 
 /* Styles for basic tags */
 h1 {
-    font-size: 3rem; /* 96px */
-    color: var(--brand-1);
+    font-size: 3rem;
+    /* 96px */
     margin: 0;
 }
 
@@ -30,14 +33,11 @@ h2 {
 }
 
 h3 {
-    font-size: 1.6rem; 
+    font-size: 1.6rem;
 }
 
-h2, h3 {
-    color: white;
-}
-
-p, a {
+p,
+a {
     font-weight: 400;
     font-size: 1.2rem;
     line-height: 1.3;
@@ -54,10 +54,12 @@ header {
     font-family: "Source Serif 4", serif;
     display: flex;
     justify-content: space-between;
+
     a {
-      color: white;
-      text-decoration: none;
+        color: white;
+        text-decoration: none;
     }
+
     a:hover {
         text-decoration: underline;
     }
@@ -65,11 +67,12 @@ header {
 
 /* Our banner styles */
 .banner {
-     color: var(--brand-1);
-     text-align: center;
-     max-width: 800px;
-     margin: 3rem auto;
-     padding: 0 2rem;
+    color: var(--brand-1);
+    text-align: center;
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+
     strong {
         font-size: 1.5rem;
     }
@@ -77,45 +80,76 @@ header {
 
 /* Our projects styles */
 .projects {
-   background: linear-gradient(180deg, var(--brand-1) 0%, #000 100%);
-   h2 {
-    text-align: center;
-    margin: 0;
-   }
-   ul {
-       max-width: 800px;
-       margin: 0 auto;
-       padding: 2rem;
-       display: flex;
-       flex-direction: column;
-       gap: 3rem;
-   }
-   li {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    background: linear-gradient(180deg, var(--brand-1) 0%, #000 100%);
+    /* Set the color as far up as possible, so child element inheret (no need to add the rule to all the child elements, except for the a tag, because that has its own default colour) */
     color: white;
-    gap: 3rem;
-   }
-   a {
-    display: inline-block;
-    border: solid 1px white;
-    padding: 0.5rem;
-    border-radius: 0 8px 0 8px;
-    color: white;
-    text-decoration: none;
-    transition: background 0.3s ease-in, color 0.3s ease-in;
-   }
-   a:hover {
-    color: black;
-    background: white;
-   }
+
+    h2 {
+        text-align: center;
+        margin: 0;
+    }
+
+    ul {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    li {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 3rem;
+    }
+
+    a {
+        display: inline-block;
+        border: solid 1px white;
+        padding: 0.5rem;
+        border-radius: 0 8px 0 8px;
+        /* Need to add the color rule again here since a tags have a default color */
+        color: white;
+        text-decoration: none;
+        transition: background 0.3s ease-in, color 0.3s ease-in;
+    }
+
+    a:hover {
+        color: black;
+        background: white;
+    }
+
+    img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 1rem 0 1rem 0;
+    }
 }
 
-.project-image {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    border-radius: 1rem 0 1rem 0;;
+.project-detail {
+    background: var(--brand-1);
+    padding: 4rem 0;
+
+    /* This selects all child elements of an element with the .project-detail class*/
+    >* {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    p {
+        margin: 1.5rem auto;
+    }
+
+    img {
+        margin-top: 2rem;
+    }
 }
 
 /* Our footer styles */
@@ -126,47 +160,33 @@ footer {
     align-items: center;
     color: white;
     padding: 1rem;
+
     p {
         margin: 0.5rem 0 0 0;
     }
+
     a {
         color: white;
         text-decoration: none;
     }
+
     a:hover {
         text-decoration: underline;
     }
 }
 
-.project-detail {
-    background: var(--brand-1);
-    padding: 4rem 0;
-
-    > * {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    h1 {
-        color: white;
-        font-size: 3rem;
-        text-align: center;
-    }
-    p {
-        color: white;
-        margin: 1.5rem auto;
-    }
-    img {
-        margin-top: 2rem;
-    }
-}
-
+/* Media query breakpoint - I am going 'mobile first' here: all the above styles work on mobile
+Thes styles are only for viewports of 720px up */
 @media screen and (min-width: 720px) {
     h1 {
-        font-size: 6rem; /* 96px */
+        font-size: 6rem;
+        /* 96px */
     }
-   .projects {
-    li {
-        grid-template-columns: repeat(2, 1fr);
+
+    .projects {
+        li {
+            /* Add the two columns for larger viewports */
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-   } 
 }
