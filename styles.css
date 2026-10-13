@@ -128,9 +128,11 @@ header {
     }
 }
 
+/* Styles for our project detail page */
 .project-detail {
     background: var(--brand-1);
     padding: 4rem 0;
+    color: white;
 
     /* This selects all child elements of an element with the .project-detail class*/
     >* {
