@@ -1,11 +1,24 @@
 /* Set our reusable variables on :root */
 :root {
-    --brand-1: #71365A;
+    --brand-1: #399798;
+    --white: white;
+    --black: black;
+    --opacity-light: rgba(255, 255, 255, 0.5);
+    --opacity-dark: rgba(000, 000, 000, 0.2);
+}
+
+[data-theme="dark"] {
+    --brand-1: #45b6b8;
+    --white: black;
+    --black: white;
+    --opacity-light: rgba(000, 000, 000, 0.5);
+    --opacity-dark: rgba(000, 000, 000, 0.2);
 }
 
 /* Change the box model from the annoying default to the preferred usage*/
 html {
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 *,
@@ -17,30 +30,60 @@ html {
 /* Get rid of the default margin on the body */
 body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--white);
+}
+
+main {
+    flex: 1;
 }
 
 /* Styles for basic tags */
 h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     /* 96px */
     margin: 0;
 }
 
 h2 {
-    padding: 1rem;
-    border-bottom: black 1px solid;
-    font-size: 1.8rem;
+    font-size: 3rem;
+    color: var(--black)
 }
 
 h3 {
-    font-size: 1.6rem;
+    font-size: 2rem;
 }
 
 p,
 a {
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     line-height: 1.3;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+}
+
+a::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+}
+
+a:hover::after {
+    background: currentColor;
+}
+
+p {
+    margin-top: 1.5rem;
 }
 
 img {
@@ -49,19 +92,29 @@ img {
 
 /* Our header styles */
 header {
-    background-color: black;
-    padding: 16px 24px;
-    font-family: "Source Serif 4", serif;
+    padding: 1rem 2rem;
+    box-shadow: 0px 0px 1rem var(--opacity-dark);
+    background: var(--opacity-light);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    top: 0;
+    backdrop-filter: blur(10px);
 
-    a {
-        color: white;
-        text-decoration: none;
+    em {
+        color: var(--black);
     }
 
-    a:hover {
-        text-decoration: underline;
+    a {
+        color: var(--black);
+        font-size: 2rem;
+    }
+
+    a:first-child {
+        font-weight: bold;
+        font-size: 2.5rem;
     }
 }
 
@@ -69,98 +122,102 @@ header {
 .banner {
     color: var(--brand-1);
     text-align: center;
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 0 2rem;
+    margin: 3rem 1rem;
+    padding: 4rem 3rem;
+    min-height: 500px;
+    border: solid 1rem var(--brand-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    >* {
+        max-width: 900px;
+    }
 
     strong {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 }
 
 /* Our projects styles */
 .projects {
-    background: linear-gradient(180deg, var(--brand-1) 0%, #000 100%);
-    /* Set the color as far up as possible, so child element inheret (no need to add the rule to all the child elements, except for the a tag, because that has its own default colour) */
-    color: white;
+    /* Set the color as far up as possible, so child elements inherit (no need to add the rule to all the child elements, except for the a tag, because that has its own default colour) */
+    color: var(--brand-1);
 
     h2 {
         text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    h3 {
         margin: 0;
     }
 
     ul {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
+        margin: 0 1rem 3rem;
+        padding: 3rem 0;
         display: flex;
         flex-direction: column;
-        gap: 3rem;
+        gap: 2rem;
     }
 
     li {
+        list-style: none;
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        gap: 3rem;
+        grid-template-columns: 1fr;
+        overflow: hidden;
+
+        div {
+            background: var(--black);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     a {
-        display: inline-block;
-        border: solid 1px white;
-        padding: 0.5rem;
-        border-radius: 0 8px 0 8px;
-        /* Need to add the color rule again here since a tags have a default color */
-        color: white;
-        text-decoration: none;
-        transition: background 0.3s ease-in, color 0.3s ease-in;
-    }
-
-    a:hover {
-        color: black;
-        background: white;
+        color: var(--white);
     }
 
     img {
         width: 100%;
         aspect-ratio: 4/3;
         object-fit: cover;
-        border-radius: 1rem 0 1rem 0;
     }
 }
 
 /* Styles for our project detail page */
-.project-detail {
-    background: var(--brand-1);
-    padding: 4rem 0;
-    color: white;
+.page-project {
+    background-color: var(--white);
+    color: var(--black);
 
     /* This selects all child elements of an element with the .project-detail class*/
-    >* {
-        max-width: 600px;
+    main {
+        max-width: 900px;
         margin: 0 auto;
+        padding: 4rem 1rem;
     }
 
     h1 {
-        font-size: 3rem;
-        text-align: center;
-    }
-
-    p {
-        margin: 1.5rem auto;
+        color: var(--brand-1);
     }
 
     img {
+        width: 100%;
         margin-top: 2rem;
     }
 }
 
 /* Our footer styles */
 footer {
-    background: black;
+    background: var(--black);
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
+    color: var(--white);
     padding: 1rem;
 
     p {
@@ -168,27 +225,105 @@ footer {
     }
 
     a {
-        color: white;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
+        color: var(--white);
     }
 }
 
+.header-right {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*Simple css to style it like a toggle switch*/
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+
+  em {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+}
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: var(--black);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: var(--brand-1);
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: var(--black);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 /* Media query breakpoint - I am going 'mobile first' here: all the above styles work on mobile
-Thes styles are only for viewports of 720px up */
+These styles are only for viewports of 720px up */
 @media screen and (min-width: 720px) {
     h1 {
-        font-size: 6rem;
+        font-size: 7rem;
         /* 96px */
+        margin: 0;
     }
 
-    .projects {
-        li {
-            /* Add the two columns for larger viewports */
-            grid-template-columns: repeat(2, 1fr);
-        }
+    h2 {
+        font-size: 4rem;
+    }
+
+    h3 {
+        font-size: 3rem;
+    }
+
+    header {
+            flex-direction: row;
+                position: sticky;
+    }
+
+    .projects li {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .header-right {
+        flex-direction: row;
+        gap: 3rem;
     }
 }
