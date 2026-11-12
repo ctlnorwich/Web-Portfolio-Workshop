@@ -56,30 +56,25 @@ h3 {
     font-size: 2rem;
 }
 
-p,
-a {
+p {
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 1.3;
 }
 
 a {
-    display: inline-block;
+    display: inline;
     text-decoration: none;
     position: relative;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 3px;
+    transition: background-size 0.3s ease;
 }
 
-a::after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 3px;
-    bottom: 0;
-    left: 0;
-}
-
-a:hover::after {
-    background: currentColor;
+a:hover {
+    background-size: 100% 3px;
 }
 
 a:focus-visible {
@@ -194,7 +189,7 @@ header {
 
     img {
         width: 100%;
-        aspect-ratio: 4/3;
+        height: 100%;
         object-fit: cover;
     }
 }
@@ -336,16 +331,23 @@ These styles are only for viewports of 720px up */
     }
 
     .banner {
-            margin: 3rem 2rem;
+        margin: 3rem 2rem;
     }
 
-    .projects ul {
-        margin: 0 2rem 3rem;
+    .projects {
+        img {
+            min-height: 420px;
+        }
+
+        ul {
+            margin: 0 2rem 3rem;
+        }
+
+        li {
+            grid-template-columns: 1fr 1fr;
+        }
     }
 
-    .projects li {
-        grid-template-columns: 1fr 1fr;
-    }
 
     .header-right {
         flex-direction: row;
@@ -354,8 +356,9 @@ These styles are only for viewports of 720px up */
 
     .page-project {
         main {
-             padding: 4rem 2rem;
+            padding: 4rem 2rem;
         }
+
         h1 {
             font-size: 6rem;
         }
