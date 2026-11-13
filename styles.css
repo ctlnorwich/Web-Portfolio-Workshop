@@ -1,17 +1,17 @@
 /* Set our reusable variables on :root */
 :root {
-    --brand-1: #399798;
-    --colour-surface: white;
-    --colour-ink: black;
-    --colour-header-surface: rgba(255, 255, 255, 0.5);
+    --colour-brand-1: #399798;
+    --colour-bg: white;
+    --colour-text: black;
+    --colour-transparent: rgba(255, 255, 255, 0.5);
     --colour-shadow: rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] {
-    --brand-1: #45b6b8;
-    --colour-surface: black;
-    --colour-ink: white;
-    --colour-header-surface: rgba(0, 0, 0, 0.5);
+    --colour-brand-1: #45b6b8;
+    --colour-bg: black;
+    --colour-text: white;
+    --colour-transparent: rgba(0, 0, 0, 0.5);
 }
 
 /* Change the box model from the annoying default to the preferred usage*/
@@ -27,29 +27,30 @@ html {
 }
 
 /* Get rid of the default margin on the body */
+/* Add flex so the footer always sits at the bottom of the page */
 body {
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: var(--colour-surface);
+    background: var(--colour-bg);
 }
 
+/* Stretch the main content out */
 main {
     flex: 1;
 }
 
-/* Styles for basic tags */
+/* Styles for basic tags. Mobile first! 1rem = 16px */
 h1 {
     font-size: 3rem;
-    /* 96px */
     margin: 0;
     text-transform: uppercase;
 }
 
 h2 {
     font-size: 3rem;
-    color: var(--colour-ink);
+    color: var(--colour-text);
 }
 
 h3 {
@@ -60,6 +61,7 @@ p {
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 1.3;
+    margin-top: 1.5rem;
 }
 
 a {
@@ -82,10 +84,6 @@ a:focus-visible {
     outline-offset: 3px;
 }
 
-p {
-    margin-top: 1.5rem;
-}
-
 img {
     display: block;
 }
@@ -94,7 +92,7 @@ img {
 header {
     padding: 1rem 2rem;
     box-shadow: 0px 0px 1rem var(--colour-shadow);
-    background: var(--colour-header-surface);
+    background: var(--colour-transparent);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -104,11 +102,11 @@ header {
     backdrop-filter: blur(10px);
 
     span {
-        color: var(--colour-ink);
+        color: var(--colour-text);
     }
 
     a {
-        color: var(--colour-ink);
+        color: var(--colour-text);
         font-size: 1rem;
     }
 
@@ -120,22 +118,22 @@ header {
 
 /* Our banner styles */
 .banner {
-    color: var(--brand-1);
+    color: var(--colour-brand-1);
     text-align: center;
     margin: 3rem 1rem;
     padding: 4rem 3rem;
     min-height: 500px;
-    border: solid 1rem var(--brand-1);
+    border: solid 1rem var(--colour-brand-1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    >h1 {
+    h1 {
         max-width: 1200px;
     }
 
-    >p {
+    p {
         max-width: 980px;
     }
 
@@ -147,7 +145,7 @@ header {
 /* Our projects styles */
 .projects {
     /* Set the color as far up as possible, so child elements inherit (no need to add the rule to all the child elements, except for the a tag, because that has its own default colour) */
-    color: var(--brand-1);
+    color: var(--colour-brand-1);
 
     h2 {
         text-align: center;
@@ -175,7 +173,7 @@ header {
     }
 
     div {
-        background: var(--colour-ink);
+        background: var(--colour-text);
         padding: 2rem;
         display: flex;
         align-items: center;
@@ -184,7 +182,7 @@ header {
     }
 
     a {
-        color: var(--colour-surface);
+        color: var(--colour-bg);
     }
 
     img {
@@ -196,8 +194,8 @@ header {
 
 /* Styles for our project detail page */
 .page-project {
-    background-color: var(--colour-surface);
-    color: var(--colour-ink);
+    background-color: var(--colour-bg);
+    color: var(--colour-text);
 
     /* This selects all child elements of an element with the .project-detail class*/
     main {
@@ -207,7 +205,7 @@ header {
     }
 
     h1 {
-        color: var(--brand-1);
+        color: var(--colour-brand-1);
     }
 
     img {
@@ -218,11 +216,11 @@ header {
 
 /* Our footer styles */
 footer {
-    background: var(--colour-ink);
+    background: var(--colour-text);
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--colour-surface);
+    color: var(--colour-bg);
     padding: 1rem 2rem;
 
     p {
@@ -230,7 +228,7 @@ footer {
     }
 
     a {
-        color: var(--colour-surface);
+        color: var(--colour-bg);
     }
 }
 
@@ -266,7 +264,7 @@ footer {
 }
 
 .slider {
-    background-color: var(--colour-ink);
+    background-color: var(--colour-text);
     cursor: pointer;
     width: 3rem;
     height: 1.6rem;
@@ -276,7 +274,7 @@ footer {
 }
 
 .slider:before {
-    background-color: var(--brand-1);
+    background-color: var(--colour-brand-1);
     bottom: 0.2rem;
     content: "";
     height: 1.2rem;
@@ -288,7 +286,7 @@ footer {
 }
 
 .theme-switch input:checked+.slider {
-    background-color: var(--colour-ink);
+    background-color: var(--colour-text);
 }
 
 .theme-switch input:focus-visible+.slider {
@@ -305,7 +303,6 @@ These styles are only for viewports of 720px up */
 @media screen and (min-width: 720px) {
     h1 {
         font-size: 7rem;
-        /* 96px */
         margin: 0;
     }
 
@@ -347,7 +344,6 @@ These styles are only for viewports of 720px up */
             grid-template-columns: 1fr 1fr;
         }
     }
-
 
     .header-right {
         flex-direction: row;
