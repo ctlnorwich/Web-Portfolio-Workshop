@@ -17,7 +17,7 @@
 /* Change the box model from the annoying default to the preferred usage*/
 html {
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: Seravek, Gill Sans Nova, Ubuntu, Calibri, DejaVu Sans, source-sans-pro, sans-serif;
 }
 
 *,
@@ -45,15 +45,18 @@ main {
 h1 {
     font-size: 3rem;
     margin: 0;
+    line-height: 1;
     text-transform: uppercase;
 }
 
 h2 {
     font-size: 3rem;
+    line-height: 1.1;
     color: var(--colour-text);
 }
 
 h3 {
+    line-height: 1.2;
     font-size: 2rem;
 }
 
